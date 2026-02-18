@@ -45,9 +45,6 @@ def get_user(
     token = credentials.credentials
     scheme = credentials.scheme
 
-    print("SCHEME:", scheme)
-    print("TOKEN:", token)
-
     if scheme != "Bearer" or not token.startswith("Bearer mock-"):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
@@ -114,6 +111,7 @@ def add_reply(post_id: str, body: ReplyRequest, user_id: str = Depends(get_user)
     replies[post_id].append(reply)
     posts[post_id]["replyCount"] += 1
     return reply
+
 
 @app.post("/posts/{post_id}/upvote")
 def toggle_upvote(post_id: str, user_id: str = Depends(get_user)):
