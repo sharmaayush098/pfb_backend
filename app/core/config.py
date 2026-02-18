@@ -1,0 +1,1 @@
+# all the configuration related to database 
